@@ -1,6 +1,6 @@
 
 var path = require('path');
-var relative = require('./require-relative');
+var relative = require('require-relative');
 
 var project = process.argv[2] || '';
 var file = process.argv[3] || '';

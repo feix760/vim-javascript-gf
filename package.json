@@ -1,0 +1,25 @@
+{
+  "name": "vim-javascript-gf",
+  "version": "1.0.0",
+  "description": "vim go file for javascipt",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/feix760/vim-javascript-gf.git"
+  },
+  "keywords": [
+    "vim",
+    "javascript",
+    "vim-node",
+    "gf"
+  ],
+  "author": "fishineyuan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/feix760/vim-javascript-gf/issues"
+  },
+  "homepage": "https://github.com/feix760/vim-javascript-gf#readme",
+  "dependencies": {
+    "require-relative": "^0.8.7"
+  }
+}
