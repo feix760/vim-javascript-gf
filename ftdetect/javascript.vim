@@ -1,8 +1,8 @@
 
-if exists('javascript#loaded')
+if exists('javascript#gf_loaded')
     finish
 endif
-let javascript#loaded = 1
+let javascript#gf_loaded = 1
 
 fun! s:WrapString(str)
   return ' "'.a:str.'" '
@@ -18,7 +18,7 @@ fun! javascript#gf_find(name)
   endif
 endfun
 
-au BufEnter *.js call javascript#gf_init()
+au BufEnter *.js,*.json,*.jsx,*.es call javascript#gf_init()
 
 fun! javascript#gf_init()
   let &l:include = '\<require(\(["'']\)\zs[^\1]\+\ze\1)\>'

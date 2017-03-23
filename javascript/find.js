@@ -1,13 +1,10 @@
 
 var path = require('path');
-var fs = require('fs');
 var relative = require('require-relative');
 
 var project = process.argv[2] || ''; // project root path
 var file = process.argv[3] || ''; // project file name eg: '/Users/project/index.js'
 var ref = process.argv[4] || ''; // ref name eg: 'react'
-
-// console.log(__dirname + '/a.txt', [project, file, ref].join('\n'));
 
 // project absolute path
 // eg: require('/module/file')
@@ -22,7 +19,7 @@ try {
 } catch(ex) {
 }
 
-// sometimes module's ref is sibling
+// sometimes module's ref is sibling. (npm flat install)
 // eg: 
 //  node_modules
 //     a/index.js
