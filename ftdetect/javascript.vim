@@ -1,30 +1,26 @@
 
-if exists('loaded_node_gf')
+if exists('javascript#loaded')
     finish
 endif
-let loaded_node_gf = 1
+let javascript#loaded = 1
 
-let node#suffixesadd = [".js", ".json", ".es", ".jsx"]
-setlocal path-=/usr/include
-let &l:suffixesadd .= "," . join(g:node#suffixesadd, ",")
-
-au BufEnter *.js call javascript#findinit()
-
-fun! javascript#findinit()
-  let &l:include = '\<require(\(["'']\)\zs[^\1]\+\ze\1)\>'
-  let &l:includeexpr = "javascript#find(v:fname)"
+fun! s:WrapString(str)
+  return ' "'.a:str.'" '
 endfun
 
-let node_gf_js_path = substitute(expand('<sfile>:p:h'), '[/\\]\?[^/\\]*$', '', '').'/javascript/find.js'
+let javascript#js_path = substitute(expand('<sfile>:p:h'), '[/\\]\?[^/\\]*$', '', '').'/javascript/find.js'
 
-fun! javascript#find(name)
-  let cmd = 'node'.s:WrapString(g:node_gf_js_path).s:WrapString(getcwd()).s:WrapString(expand('%:p')).s:WrapString(a:name)
+fun! javascript#gf_find(name)
+  let cmd = 'node'.s:WrapString(g:javascript#js_path).s:WrapString(getcwd()).s:WrapString(expand('%:p')).s:WrapString(a:name)
   let path = substitute(system(cmd), '^[ \n]\+\|[ \n]\+$', '', 'g')
   if path != ''
     return path
   endif
 endfun
 
-fun! s:WrapString(str)
-  return ' "'.a:str.'" '
+au BufEnter *.js call javascript#gf_init()
+
+fun! javascript#gf_init()
+  let &l:include = '\<require(\(["'']\)\zs[^\1]\+\ze\1)\>'
+  let &l:includeexpr = "javascript#gf_find(v:fname)"
 endfun
